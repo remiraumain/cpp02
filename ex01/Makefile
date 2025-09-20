@@ -6,11 +6,11 @@
 #    By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/18 15:37:12 by rraumain          #+#    #+#              #
-#    Updated: 2025/09/19 12:56:40 by rraumain         ###   ########.fr        #
+#    Updated: 2025/09/19 12:56:42 by rraumain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex00
+NAME = ex01
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
