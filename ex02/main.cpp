@@ -14,6 +14,7 @@ int main( void ) {
 
 	Fixed c(2);
 	Fixed d(4);
-	std::cout << "Test: " << d * c << std::endl;
+	std::cout << c * d << std::endl;
+	std::cout << c / d << std::endl;
 	return 0;
 }
