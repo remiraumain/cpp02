@@ -6,13 +6,18 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 16:20:49 by rraumain          #+#    #+#             */
-/*   Updated: 2025/09/19 14:04:31 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/09/23 20:20:33 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <iostream>
 #include <cmath>
+
+std::ostream	&operator<<(std::ostream &lhs, const Fixed &rhs)
+{
+	return (lhs << rhs.toFloat());
+}
 
 const int	Fixed::_fractionalBits = 8;
 
@@ -31,7 +36,7 @@ Fixed	&Fixed::operator=(const Fixed &copy)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &copy)
-		this->_rawBits = copy.getRawBits();
+		_rawBits = copy.getRawBits();
 	return (*this);
 }
 
@@ -49,10 +54,7 @@ Fixed::Fixed(const int raw)
 Fixed::Fixed(const float raw)
 {
 	std::cout << "Float constructor called" << std::endl;
-	const int	scale = 1 << _fractionalBits;
-	const float	scaled = raw * scale;
-	int	encoded = static_cast<int>(roundf(scaled));
-	setRawBits(encoded);
+	setRawBits(roundf(raw * (1 << _fractionalBits)));
 }
 
 int	Fixed::getRawBits(void) const 
@@ -67,17 +69,10 @@ void	Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat(void) const
 {
-	const int	scale = 1 << _fractionalBits;
-	float	decoded = static_cast<float>(getRawBits());
-	return (decoded / scale);
+	return ((float)_rawBits / (1 << _fractionalBits));
 }
 
 int		Fixed::toInt(void) const
 {
-	return (static_cast<int>(toFloat()));
-}
-
-std::ostream	&operator<<(std::ostream &lhs, const Fixed &rhs)
-{
-	return (lhs << rhs.toFloat());
+	return (_rawBits >> _fractionalBits);
 }
