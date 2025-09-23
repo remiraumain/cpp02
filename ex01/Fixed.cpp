@@ -6,7 +6,7 @@
 /*   By: rraumain <rraumain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 16:20:49 by rraumain          #+#    #+#             */
-/*   Updated: 2025/09/23 20:20:33 by rraumain         ###   ########.fr       */
+/*   Updated: 2025/09/23 22:33:00 by rraumain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,5 @@ float	Fixed::toFloat(void) const
 
 int		Fixed::toInt(void) const
 {
-	return (_rawBits >> _fractionalBits);
+	return (_rawBits / (1 << _fractionalBits));
 }
